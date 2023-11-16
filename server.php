@@ -35,17 +35,18 @@ else {
 }
 echo '<br>';
 //password
-$str = $pwd ;
-$password = md5($str);
-echo $password ;
+$str = $_REQUEST['pwd'] ;
+$pwd = md5($str);
+echo $pwd ;
 echo '<br>';
 var_dump($gender);
-$servername = "localhost";
-$username = "bahram";
-$password = "123";
-$dbname = "mekeen";
+
 try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $servername = "localhost";
+    $username = "root";
+    $dbname = "mekeen";
+    $password = "" ;
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username,$password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $sql = $conn->prepare("INSERT INTO users (firstname, lastname, age , phone_number , password , gender) VALUES (? , ? , ? , ? , ? , ?)");
@@ -54,7 +55,7 @@ try {
     $sql->bindParam(2, $lastname);
     $sql->bindParam(3, $age);
     $sql->bindParam(4, $phone);
-    $sql->bindParam(5, $password);
+    $sql->bindParam(5, $pwd);
     $sql->bindParam(6, $gender);
     $sql->execute();
     echo "New record created successfully";
