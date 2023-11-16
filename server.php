@@ -48,9 +48,3 @@ echo $password ;
 echo '<br>';
 var_dump($gender);
 
-//put in database
-$user = array('gender' => $gender,'password' => $password,'age' => $age,'phone' => $phone,'firstname' => $firstname,'id' => $id,'lastname' =>$lastname) ;
-
-$data = json_decode(file_get_contents('task.txt'),true);
-$data []= $user;
-file_put_contents('task.txt',json_encode($data)) ;
