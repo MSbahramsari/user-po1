@@ -12,8 +12,8 @@
         <div class="container">
             <form action="updateserver.php" method="post">
                 <div class="mb-3 mt-3">
-                    <label for="number" class="form-label">id</label>
-                    <input type="number" class="form-control" name="id">
+                    <label for="text" class="form-label">firs name</label>
+                    <input type="text" class="form-control" name="firstnamev">
                 </div>
                 <div class="mb-3 mt-3">
                     <label for="text" class="form-label">first name</label>
