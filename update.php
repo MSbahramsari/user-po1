@@ -49,15 +49,7 @@
 
 </body>
 </html>
-<?php
-$data = json_decode(file_get_contents('task.txt'),true);
-$id = $_REQUEST["id"];
-$data = array_filter($data, function ($user) use ($id) {if (array_key_exists('show', $_POST)) {
-    if ($user["id"] == $id) {
-        print("<pre>" . print_r($user, true) . "</pre>");
-    }
-}
-    ;});
+
 
 
 
