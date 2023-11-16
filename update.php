@@ -9,14 +9,6 @@
 </head>
 <body>
 <div class="container">
-    <form action="update.php" method="post">
-        <div class="mb-3 mt-3">
-            <label for="number" class="form-label">id</label>
-            <input type="number" class="form-control" name="id">
-        </div>
-        <button type="submit" class="btn btn-outline-primary" name="show">show user</button>
-        <br>
-    </form>
         <div class="container">
             <form action="updateserver.php" method="post">
                 <div class="mb-3 mt-3">
