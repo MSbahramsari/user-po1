@@ -40,4 +40,26 @@ $password = md5($str);
 echo $password ;
 echo '<br>';
 var_dump($gender);
+$servername = "localhost";
+$username = "bahram";
+$password = "123";
+$dbname = "mekeen";
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $sql = $conn->prepare("INSERT INTO users (firstname, lastname, age , phone_number , password , gender) VALUES (? , ? , ? , ? , ? , ?)");
+
+    $sql->bindParam(1, $firstname);
+    $sql->bindParam(2, $lastname);
+    $sql->bindParam(3, $age);
+    $sql->bindParam(4, $phone);
+    $sql->bindParam(5, $password);
+    $sql->bindParam(6, $gender);
+    $sql->execute();
+    echo "New record created successfully";
+} catch(PDOException $e) {
+    echo $sql . "<br>" . $e->getMessage();
+}
+$conn = null;
 
