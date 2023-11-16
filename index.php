@@ -8,11 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-<form action="server.php" method="post">
-    <div class="mb-3 mt-3">
-        <label for="number" class="form-label">id</label>
-        <input type="number" class="form-control" name="id">
-    </div>
+<form action="test.php" method="post">
     <div class="mb-3 mt-3">
         <label for="text" class="form-label">first name</label>
         <input type="text" class="form-control" name="firstname">
