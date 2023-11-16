@@ -1,21 +1,11 @@
 <?php
-extract($_REQUEST , EXTR_PREFIX_SAME , "dup");
-$newData = array();
+extract($_REQUEST, EXTR_PREFIX_SAME, "dup");
 //id
-if (intval($id)) {
-    echo $id;
-}
-else {
-    echo 'invalid id';
-}
 echo '<br>';
 //age
 if ($age >= 18) {
-    echo $age ;
-    $age = array('age'=>$age);
-    $total = array_merge($newData , $age);
-}
-else {
+    echo $age;
+} else {
     echo 'invalid age';
 
 }
@@ -23,54 +13,70 @@ echo '<br>';
 //phone number
 if (strlen($phone) <= 11) {
     echo $phone;
-    $phone = array('phone'=>$phone);
-    $total = array_merge($newData , $phone);}
-else {
+} else {
     echo 'invalid';
 }
 echo '<br>';
 // first name
 if (strlen($firstname) <= 40) {
     echo $firstname;
-    $firstname = array('firstname'=>$firstname);
-    $total = array_merge($newData , $firstname);}
-else {
+} else {
     echo 'invalid';
 }
 echo '<br>';
 //last name
 if (strlen($lastname) <= 40) {
-    $lastname = array('lastname'=>$lastname);
-    $total = array_merge($newData , $lastname);}
-
-else {
+    echo $lastname;
+} else {
     echo 'invalid';
 }
 echo '<br>';
 //password
-$str = $pwd ;
+$str = $pwd;
 $password = md5($str);
-echo $password ;
+echo $password;
 echo '<br>';
-$password = array('password'=>$password);
-$total = array_merge($newData , $password);
+var_dump($gender);
 
-$gender = array('gender'=>$gender);
-$total = array_merge($newData , $gender);
-
-//put in database
-print_r($total);
-$data = fopen("task.txt" , "r+");
-fread( $data , filesize('task.txt'));
-foreach ($data as $key => $user) {
-    if ($user['id'] == $id) {
-        $end[$key] =str_replace($user,$total);
-        fwrite($data , $end);
-        fclose($data);
-
-    }
+$servername = "localhost";
+$username = "bahram";
+$password = "123";
+$dbname = "mekeen";
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $sql = "INSERT INTO users (firstname, lastname, age , phone_number , password , gender)
+  VALUES ('$firstname', '$lastname', '$age' ,'$phone' , '$password' , '$gender')";
+    // use exec() because no results are returned
+    $conn->exec($sql);
+    echo "New record created successfully";
+} catch(PDOException $e) {
+    echo $sql . "<br>" . $e->getMessage();
 }
+$conn = null;
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+?>
