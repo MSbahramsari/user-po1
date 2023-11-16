@@ -1,12 +1,5 @@
 <?php
 extract($_REQUEST , EXTR_PREFIX_SAME , "dup");
-//id
-if (intval($id)) {
-        echo $id;
-}
-else {
-        echo 'invalid id';
-}
 echo '<br>';
 //age
 if ($age >= 18) {
