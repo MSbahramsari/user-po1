@@ -15,7 +15,12 @@ try {
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     print_r($result);
     $user = $result[0];
-    echo $user['firstname'];
+    $firstname = $user['firstname'];
+    $lastname = $user['lastname'];
+    $age = $user['age'];
+    $phone_number = $user['phone_number'];
+    $password = $user['password'];
+    $gender = $user['gender'];
 } catch(PDOException $e) {
     echo "echo not find " . $e->getMessage();
 }
@@ -41,7 +46,7 @@ try {
     <form action="server.php" method="post">
         <div class="mb-3 mt-3">
             <label for="text" class="form-label">firstname</label>
-            <input type="text" class="form-control"  name="firstname">
+            <input type="text" class="form-control"  name="firstname" >
         </div>
         <div class="mb-3 mt-3">
             <label for="text" class="form-label">last name</label>
