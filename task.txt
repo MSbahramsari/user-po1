@@ -1,4 +1,0 @@
- $result = $sql->setFetchMode(PDO::FETCH_ASSOC);
-    foreach(new TableRows(new RecursiveArrayIterator($sql->fetchAll())) as $k=>$v) {
-        $firstname = 'firstname';
-    }
