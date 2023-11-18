@@ -8,13 +8,16 @@ try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username,$password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = $conn->prepare($sql =    "SELECT firstname, lastname, age , phone_number , password , gender FROM users  WHERE id=?");
+    $stmt = $conn->prepare($sql = "SELECT firstname, lastname, age , phone_number , password , gender FROM users  WHERE id=?");
 
-    $sql->bindParam(1, $id);
-    $sql->execute();
-    echo "user showed";
+    $stmt->bindParam(1, $id);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    print_r($result);
+    $user = $result[0];
+    echo $user['firstname'];
 } catch(PDOException $e) {
-    echo " user not find " . "<br>" . $e->getMessage();
+    echo "echo not find " . $e->getMessage();
 }
 ?>
 
@@ -37,8 +40,8 @@ try {
     <button type="submit" class="btn btn-primary">Submit</button>
     <form action="server.php" method="post">
         <div class="mb-3 mt-3">
-            <label for="text" class="form-label">first name</label>
-            <input type="text" class="form-control" name="firstname">
+            <label for="text" class="form-label">firstname</label>
+            <input type="text" class="form-control"  name="firstname">
         </div>
         <div class="mb-3 mt-3">
             <label for="text" class="form-label">last name</label>
