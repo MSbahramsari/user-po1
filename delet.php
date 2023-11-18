@@ -19,7 +19,25 @@
 </body>
 </html>
 <?php
+try {
+    $servername = "localhost";
+    $username = "root";
+    $dbname = "mekeen";
+    $password = "" ;
+    $name = $_REQUEST["firstname"];
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username,$password);
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $sql = $conn->prepare($sql =    "DELETE 
+                                    FROM users 
+                                    WHERE firstname=?");
 
+    $sql->bindParam(1, $name);
+    $sql->execute();
+    echo "user deleted";
+} catch(PDOException $e) {
+    echo " user not deleted " . "<br>" . $e->getMessage();
+}
 
 
 
