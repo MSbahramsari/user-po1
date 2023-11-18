@@ -1,3 +1,24 @@
+<?php
+try {
+    $servername = "localhost";
+    $username = "root";
+    $dbname = "mekeen";
+    $password = "" ;
+    $id = $_REQUEST["id"];
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username,$password);
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $sql = $conn->prepare($sql =    "SELECT firstname, lastname, age , phone_number , password , gender FROM users  WHERE id=?");
+
+    $sql->bindParam(1, $id);
+    $sql->execute();
+    echo "user showed";
+} catch(PDOException $e) {
+    echo " user not find " . "<br>" . $e->getMessage();
+}
+?>
+
+
 <html>
 <head>
     <meta charset="UTF-8">
@@ -43,4 +64,3 @@
 
 </body>
 </html>
-<?php
