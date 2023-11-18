@@ -13,7 +13,6 @@ try {
     $stmt->bindParam(1, $id);
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    print_r($result);
     $user = $result[0];
     $firstname = $user['firstname'];
     $lastname = $user['lastname'];
@@ -46,27 +45,27 @@ try {
     <form action="server.php" method="post">
         <div class="mb-3 mt-3">
             <label for="text" class="form-label">firstname</label>
-            <input type="text" class="form-control"  name="firstname" >
+            <input type="text" class="form-control"  name="firstname" value="<?php echo $firstname?>" readonly>
         </div>
         <div class="mb-3 mt-3">
             <label for="text" class="form-label">last name</label>
-            <input type="text" class="form-control"  name="lastname">
+            <input type="text" class="form-control"  name="lastname" value="<?php echo $lastname?>" readonly>
         </div>
         <div class="mb-3 mt-3">
             <label for="text" class="form-label">phone number</label>
-            <input type="number" class="form-control" name="phone">
+            <input type="number" class="form-control" name="phone" value="<?php echo $phone_number?>" readonly>
         </div>
         <div class="mb-3 mt-3">
             <label for="number" class="form-label">age</label>
-            <input type="number" class="form-control" name="age">
+            <input type="number" class="form-control" name="age" value="<?php echo $age?>" readonly>
         </div>
         <div class="mb-3">
             <label for="pwd" class="form-label">Password:</label>
-            <input type="password" class="form-control" name="pwd">
+            <input type="password" class="form-control" name="pwd" value="<?php echo $password?>" readonly>
         </div>
         <div class="mb-3 mt-3">
             <label for="text" class="form-label">gender</label>
-            <input type="text" class="form-control"  name="gender">
+            <input type="text" class="form-control"  name="gender" value="<?php echo $gender?>" readonly>
         </div>
 </form>
 
