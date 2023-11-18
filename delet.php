@@ -10,8 +10,8 @@
 <body>
 <form action="delet.php">
     <div class="mb-3 mt-3">
-        <label for="number" class="form-label">id</label>
-        <input type="number" class="form-control" name="id">
+        <label for="text" class="form-label">name</label>
+        <input type="input" class="form-control" name="firstname">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
@@ -19,13 +19,20 @@
 </body>
 </html>
 <?php
-$data = json_decode(file_get_contents('task.txt'),true);
-$id = $_REQUEST["id"];
-$data = array_filter($data, function ($user) use ($id) {
-    if ($user["id"] != $id){
-    return $user["id"] ;
-    }
-});
-file_put_contents("task.txt", json_encode($data));
+
+
+
+
+
+
+
+//$data = json_decode(file_get_contents('task.txt'),true);
+//$name = $_REQUEST["firstname"];
+//$data = array_filter($data, function ($user) use ($id) {
+//    if ($user["id"] != $id){
+//    return $user["id"] ;
+//    }
+//});
+//file_put_contents("task.txt", json_encode($data));
 
 ?>
