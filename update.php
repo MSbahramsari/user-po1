@@ -1,16 +1,17 @@
 <?php
+session_start();
 try {
     $servername = "localhost";
     $username = "root";
     $dbname = "mekeen";
     $password = "" ;
-    $firstnamev = $_REQUEST["firstnamev"];
+    $idv = $_SESSION['userid'];
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username,$password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare($sql = "SELECT id , firstname, lastname, age , phone_number , password , gender FROM users  WHERE firstname=?");
+    $stmt = $conn->prepare($sql = "SELECT id , firstname, lastname, age , phone_number , password , gender FROM users  WHERE id=?");
 
-    $stmt->bindParam(1, $firstnamev);
+    $stmt->bindParam(1, $idv);
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $user = $result[0];
@@ -37,13 +38,6 @@ try {
 <body>
 <div class="container">
         <div class="container">
-            <form action="update.php" method="post">
-                <div class="mb-3 mt-3">
-                    <label for="text" class="form-label">firs name</label>
-                    <input type="text" class="form-control" name="firstnamev">
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
             <form action="updateserver.php" method="post">
                 <div class="mb-3 mt-3">
                     <input type="hidden" class="form-control" name="id" value="<?php echo $id?>">
