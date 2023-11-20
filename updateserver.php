@@ -56,16 +56,16 @@ try {
     phone_number = ?,
     password = ?,
     gender = ?
-    WHERE firstname = ? 
+    WHERE id = ? 
     ");
 
     $sql->bindParam(1, $firstname);
     $sql->bindParam(2, $lastname);
     $sql->bindParam(3, $age);
     $sql->bindParam(4, $phone);
-    $sql->bindParam(5, $pwd);
+    $sql->bindParam(5, $password);
     $sql->bindParam(6, $gender);
-    $sql->bindParam(7, $firstnamev);
+    $sql->bindParam(7, $id);
     $sql->execute();
     echo "New record created successfully";
 } catch(PDOException $e) {
