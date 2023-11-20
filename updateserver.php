@@ -38,7 +38,7 @@ else {
 echo '<br>';
 //password
 $str = $pwd ;
-$password = md5($str);
+$password = $str ;
 echo $password ;
 echo '<br>';
 try {
@@ -54,7 +54,6 @@ try {
         lastname = ?,
     age = ?,
     phone_number = ?,
-    password = ?,
     gender = ?
     WHERE id = ? 
     ");
@@ -63,9 +62,8 @@ try {
     $sql->bindParam(2, $lastname);
     $sql->bindParam(3, $age);
     $sql->bindParam(4, $phone);
-    $sql->bindParam(5, $password);
-    $sql->bindParam(6, $gender);
-    $sql->bindParam(7, $id);
+    $sql->bindParam(5, $gender);
+    $sql->bindParam(6, $id);
     $sql->execute();
     echo "New record created successfully";
 } catch(PDOException $e) {

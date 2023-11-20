@@ -50,23 +50,23 @@ try {
                 </div>
                 <div class="mb-3 mt-3">
                     <label for="text" class="form-label">firstname</label>
-                    <input type="text" class="form-control"  name="firstname" placeholder="<?php echo $firstname?>" >
+                    <input type="text" class="form-control"  name="firstname" value="<?php echo $firstname?>" >
                 </div>
                 <div class="mb-3 mt-3">
                     <label for="text" class="form-label">last name</label>
-                    <input type="text" class="form-control"  name="lastname" placeholder="<?php echo $lastname?>" >
+                    <input type="text" class="form-control"  name="lastname" value="<?php echo $lastname?>" >
                 </div>
                 <div class="mb-3 mt-3">
                     <label for="text" class="form-label">phone number</label>
-                    <input type="number" class="form-control" name="phone" placeholder="<?php echo $phone_number?>" >
+                    <input type="number" class="form-control" name="phone" value="<?php echo $phone_number?>" >
                 </div>
                 <div class="mb-3 mt-3">
                     <label for="number" class="form-label">age</label>
-                    <input type="number" class="form-control" name="age" placeholder="<?php echo $age?>" >
+                    <input type="number" class="form-control" name="age" value="<?php echo $age?>" >
                 </div>
                 <div class="mb-3">
                     <label for="pwd" class="form-label">Password:</label>
-                    <input type="password" class="form-control" name="pwd" placeholder="<?php echo $password?>" >
+                    <input type="password" class="form-control" name="pwd" value="<?php echo $password?>"  readonly>
                 </div>
                 <div><select class="form-select form-select" name="gender">
                         <option><?php echo $gender?></option>
