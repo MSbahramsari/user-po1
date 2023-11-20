@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 try {
     $servername = "localhost";
     $username = "root";
@@ -8,18 +10,20 @@ try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username,$password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare($sql = "SELECT firstname, lastname, age , phone_number , password , gender FROM users  WHERE id=?");
+    $stmt = $conn->prepare($sql = "SELECT id , firstname, lastname, age , phone_number , password , gender FROM users  WHERE id=?");
 
     $stmt->bindParam(1, $id);
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $user = $result[0];
+    $userid = $user['id'];
     $firstname = $user['firstname'];
     $lastname = $user['lastname'];
     $age = $user['age'];
     $phone_number = $user['phone_number'];
     $password = $user['password'];
     $gender = $user['gender'];
+    $_SESSION['userid'] = $id;
 } catch(PDOException $e) {
     echo "echo not find " . $e->getMessage();
 }
@@ -43,29 +47,36 @@ try {
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
     <form action="server.php" method="post">
-        <div class="mb-3 mt-3">
-            <label for="text" class="form-label">firstname</label>
-            <input type="text" class="form-control"  name="firstname" value="<?php echo $firstname?>" readonly>
-        </div>
-        <div class="mb-3 mt-3">
-            <label for="text" class="form-label">last name</label>
-            <input type="text" class="form-control"  name="lastname" value="<?php echo $lastname?>" readonly>
-        </div>
-        <div class="mb-3 mt-3">
-            <label for="text" class="form-label">phone number</label>
-            <input type="number" class="form-control" name="phone" value="<?php echo $phone_number?>" readonly>
-        </div>
-        <div class="mb-3 mt-3">
-            <label for="number" class="form-label">age</label>
-            <input type="number" class="form-control" name="age" value="<?php echo $age?>" readonly>
-        </div>
-        <div class="mb-3">
-            <label for="pwd" class="form-label">Password:</label>
-            <input type="password" class="form-control" name="pwd" value="<?php echo $password?>" readonly>
-        </div>
-        <div class="mb-3 mt-3">
-            <label for="text" class="form-label">gender</label>
-            <input type="text" class="form-control"  name="gender" value="<?php echo $gender?>" readonly>
+        <div class="container mt-3">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>age</th>
+                    <th>phone number</th>
+                    <th>password</th>
+                    <th>gender</th>
+                    <th>update</th>
+                    <th>delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><?php echo $userid?></td>
+                    <td><?php echo $firstname?></td>
+                    <td><?php echo $lastname?></td>
+                    <td><?php echo $age?></td>
+                    <td><?php echo $phone_number?></td>
+                    <td><?php echo $password?></td>
+                    <td><?php echo $gender?></td>
+                    <td><form action="update.php" method="post"><a href="update.php" class="btn btn-info" role="button">update</a></a></form></td>
+                    <td><form action="delet.php" method="post"><button type="submit" class="btn btn-danger" name="delete">delete</button></form></td>
+                </tr>
+
+                </tbody>
+            </table>
         </div>
 </form>
 
